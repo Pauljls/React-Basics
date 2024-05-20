@@ -1,12 +1,14 @@
-import { MouseEvent, useState } from "react"
+import { useState } from "react"
 
 //OTRA ORMA DE ASIGNARLE UN TIPO DE DATOS A PROPS
 type props = {
-    data : String[]
+    data : string[],
+    //AQUI ESPECIFICAMOS QUE ONSELECT SERA UNA FAT ARROW FUNCTION
+    onSelect ?: (elemento : string) => void
 }
 
 
-function List({data} : props){
+function List({data, onSelect} : props){
     //1.ES NECESARIO INGRESAR COMO PROPIEDAD EL OBJETO EVENTO, YA QUE ONCLICK Y OTROS EVENTOS LO NECESITAN
     //  ESTE POR LO GENERAL VA EN LOS APRAMETROS DE LA FUNCION, POR DEFECTO ES AGREGADO, ESTE EVENTO ES MOUSEVENT
     //  EL CUAL ES DADO POR LAS ACCIONES DEL MOUSE 
@@ -37,13 +39,20 @@ function List({data} : props){
     */ //-------------------------- FORMA CORRECTA----------------------------
     const [index, setIndex] =  useState(0)
 
-    const handleClick=(e : number)=>{
+    //TRATEREMOS DE APSARLE ADEMAS DEL INDICE UNA LOGICA A LA FUNCION
+    const handleClick=(e : number, elemento : string)=>{
         setIndex(e)
-        console.log(e)
+        //ESTA FUNCION DEBE SER DECLARADA FUERA DEL COMPONENTE PARA PODER HACERLA MAS DINAMICA
+        //ES DECIR VENDRA DESDE LAS PROPEIDADES DE LA ETIQUETA LIST
+
+        //2. USAMOS ?. PARA INDICAR QUE SE EJECUTE SI SE ENCUENTRA LA FUNCION,
+        //YA QUE CASO CONTRARIO OBTENDREMOS EL ERROR DE QUE LA FUNCION PODRIA SER INDEFINIDA
+        //EN RESUMEN, CON ?. INDICAMOS SI LA FUNCION SE ENCUENTRA EJECUTALA , CASO CONTRARIO NO 
+        onSelect?.(elemento)
     }
     return( <ul className="list-group">
         
-        {data.map( (elemento, i) => ( <li key={elemento} className={`list-group-item ${ index == i ? 'active' : ''}`} onClick={ ()=> handleClick(i) }>{elemento}</li>))}
+        {data.map( (elemento, i) => ( <li key={elemento} className={`list-group-item ${ index == i ? 'active' : ''}`} onClick={ ()=> handleClick(i, elemento) }>{elemento}</li>))}
   </ul>
     )
 }
