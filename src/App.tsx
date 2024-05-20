@@ -2,7 +2,9 @@
 import Card,{CardBody} from "./Card"
 
 function App(){
-  return <CardBody title={"TITULO"} text={"Esto es un texto"}></CardBody>
+  return <Card>
+    <CardBody title={"Esto es un titulo"} text={"Esto es un texto"}/>
+  </Card>
 }
 
 export default App

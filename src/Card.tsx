@@ -1,7 +1,15 @@
 //CREAMOS UNA INTREFAZ APRA PODER ASOCIARLE UN TIPODE DATO
+
+import { ReactNode } from "react"
+
 //YA QUE POR DEFECTO PROPS ES ANY
 interface Props{
-  body: string
+  //PARA PODER USAR UNA ETIQUETA DENTRO DE NUESTRA ETIQUETA
+  //ES NENCESARIO USAR REACT NODE PARA PODER HACERLO,ESTE LO LLAMARA DE
+  //LA LIBRERIA REACT
+  children: ReactNode
+  //ESTE ES EN EL CASODE SOL TEXTO 
+  //children : String ||| puede ser cualqueir otro tipo de dato realmente pero esta es la logica
 }
 
 interface CardBodyProps{
@@ -12,7 +20,7 @@ interface CardBodyProps{
 }
 
 function Card(props:Props){
-  const { body } = props
+  const { children } = props
     const width = {
         width: "350px",
     }
@@ -22,7 +30,7 @@ function Card(props:Props){
         width : "450px"
     }}>
     <div className="card-body" >
-      {body}
+      {children}
     </div>
   </div>
 }
