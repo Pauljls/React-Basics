@@ -1,9 +1,12 @@
 
 import Card,{CardBody} from "./components/Card"
 import List from "./components/List"
+import Button from "./components/Button"
 
 const list :  string[] =  [
-  
+  'Goku',
+  'Tanjiro',
+  'Eren'
 ]
 
 //SHORT CIRCUIT OPERATOR
@@ -14,7 +17,7 @@ const list :  string[] =  [
 // const x = 8-8 && "Hola mundo" // pero si el valor da 0 entonces siempre se imprimira 0,solo sucede en react
 function App(){
   //ES UNA CONVENCION USAR handle(nombre de funcion) para asignar una fucnion a un componente
-  const handleSelect = (elemento : string)=>{
+  const handleSelect = (elemento : string)=>{ 
      console.log(elemento + 1)
   }
   return <Card>
@@ -22,6 +25,8 @@ function App(){
     {
       list.length ? (<List data={list} onSelect={handleSelect}/>) : "No hay contenido" 
     }
+    <br/>
+    <Button> Enviar </Button>
   </Card>
 }
 
