@@ -1,23 +1,16 @@
 import { ReactNode, useState } from "react"
 
-interface Props{
+type Props = {
     children : ReactNode
+    isLoading :  boolean
+    onClick : ()=> void
 }
 
 
-function Button(props : Props){
-    const [status, setStatus] = useState(true)
-    const [message, setMessage] = useState(props.children)
-    const [enable, setEnable] =useState(false)
+function Button({children, onClick, isLoading} : Props){
 
 
-    const statusHandler=()=>{
-        setStatus(false)
-        setEnable(true)
-        setMessage('Cargando...')
-    }
-
-    return (<button type="button" disabled={enable} className={`${status ? 'btn btn-primary' : 'btn btn-secondary'}`} onClick={()=>statusHandler()} >{message}</button>)
+    return (<button disabled={isLoading} onClick={onClick} type="button" className= {`btn btn-${isLoading ? 'secondary' : 'primary'}`}>{isLoading ? 'Cargando': children }</button>)
 }
 
 export default Button
