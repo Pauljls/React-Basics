@@ -6,11 +6,21 @@ type Props = {
     onClick : ()=> void
 }
 
+const styles = {
+    backgroundColor :"red"
+}
 
 function Button({children, onClick, isLoading} : Props){
 
 
-    return (<button disabled={isLoading} onClick={onClick} type="button" className= {`btn btn-${isLoading ? 'secondary' : 'primary'}`}>{isLoading ? 'Cargando': children }</button>)
+    return (<button 
+        style={styles}
+        disabled={isLoading} 
+        onClick={onClick} 
+        type="button" 
+        className= {`btn btn-${isLoading ? 'secondary' : 'primary'}`}>
+            {isLoading ? 'Cargando': children }
+        </button>)
 }
 
 export default Button
