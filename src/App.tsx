@@ -15,26 +15,42 @@ import { useState } from "react"
 // const x = 8-8 && "Hola mundo" // pero si el valor da 0 entonces siempre se imprimira 0,solo sucede en react
 function App(){
 
+  const [data,setData] = useState(['Goku','Tanjiro','Chanchito feliz'])
+
   //ES UNA CONVENCION USAR handle(nombre de funcion) para asignar una fucnion a un componente
   
-  const [isLoading, setIsLoading]= useState(false)
-  const handleClick =()=> setIsLoading(!isLoading)
-  
-  const list :  string[] =  [
-    'Goku',
-    'Tanjiro',
-    'Eren'
-  ]
+  //const [isLoading, setIsLoading]= useState(false)
+  //const handleClick =()=> setIsLoading(!isLoading)
+  //
+  //const list :  string[] =  [
+  //  'Goku',
+  //  'Tanjiro',
+  //  'Eren'
+  //]
+//
+  //return <Card>
+  //  
+  //  <CardBody title={"Esto es un titulo"} text={"Esto es un texto"}/>
+  //  {
+  //    list.length ? (<List data={list} />) : "No hay contenido" 
+  //  }
+  //  <br/>
+  //  <Button isLoading={isLoading} onClick={handleClick} >Hola mundo</Button>
+  //</Card>
+  const addMinion=()=>{
+    setData([...data,"minion"])
+  }
+  const delMinion=()=>{
+    setData(data.slice(0,-1))
+  }
 
-  return <Card>
-    
-    <CardBody title={"Esto es un titulo"} text={"Esto es un texto"}/>
-    {
-      list.length ? (<List data={list} />) : "No hay contenido" 
-    }
-    <br/>
-    <Button isLoading={isLoading} onClick={handleClick} >Hola mundo</Button>
-  </Card>
+  return(
+    <Card>
+      <Button onClick={addMinion}>Agregar</Button>
+      <Button onClick={delMinion}>Eliminar</Button>
+      <List data={data}/>
+    </Card>
+  )
 
 }
 
