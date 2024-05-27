@@ -1,6 +1,9 @@
 
 import Card,{CardBody} from "./components/Card"
 import List from "./components/List"
+//PARA EVITAR LA REDUNDACIA LALMAMOS AL COMPONENETE COMO INDEX DENTRO DEL
+//DIRECTORIO DONDE SE UBICA, POR DEFECTO REACT BUSCARA INDEX EN EL DIRECTORIO Y
+//NO SERA NECESARIO LLAMARLO BAJO EL MISMO NOMBRE DE LA CARPETA
 import Button from "./components/Button"
 import Button1 from "./components/Button1"
 import { useState } from "react"
