@@ -1,8 +1,18 @@
-import { ReactNode, useState } from "react"
-//para crear un modulo de css sera necesario importarlo bajo una costante
-//los modulos seran las propeidades del objeto por lo que sera necesario nombrarlas
-//de la siguiente forma ".nombre"
-import style from './Button.module.css'
+import { ReactNode} from "react"
+import styled from "styled-components"
+
+type BtnProps = {
+    isLoading : boolean
+}
+
+//----PUNTOS IMPORTANTES
+//1.SE GENERA CODIGO CSS DENTRO DE LOS BACKTICS 
+//2.SE PEUDE ASIGNARLE UN STILIZADO SEGUN UNA PROPIEDAD
+//SI LO DECLARAMOS CON EL TIPO COMO S EMUESTRA A CONTINUACION
+const Btn = styled.button<BtnProps>`
+    background-color: ${props => props.isLoading ? 'gray' : 'red'};
+    padding: 25px 30px;
+`
 
 type Props = {
     children : ReactNode
@@ -11,21 +21,21 @@ type Props = {
 }
 
 
-console.log(style)
+console.log(styled)
 function Button({children, onClick, isLoading} : Props){
 
 
-    const className = [`btn btn-${isLoading ? 'secondary' : 'primary'}`,style.button, style.padded].join(" ")
+    //const className = [`btn btn-${isLoading ? 'secondary' : 'primary'}`,styled.button, styled.padded].join(" ")
     //Los modulso de css iran en el apartado de clases
-    return (<button 
+    return (<Btn 
         disabled={isLoading} 
         onClick={onClick} 
-        type="button" 
-        className= {className}
         //className={[style.button, style.padded].join(" ")}
+        //Cambiando estilos dinamicamente con propeidades
+        isLoading={isLoading}
         >
             {isLoading ? 'Cargando': children }
-        </button>)
+        </Btn>)
 }
 
 export default Button
